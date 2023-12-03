@@ -203,7 +203,12 @@
             <div class="col-lg-4">
                 <h5 id="titre-prof" class="fw-bold m-2">Planning du projet</h5>
             </div>
-            <div class="col-lg-2 offset-lg-6 col-6 offset-6">
+            <div class="col-lg-3">
+                @if ($design_item != "")
+                    <span class="fw-bold">Item selectionner : </span> {{$design_item}}
+                @endif
+            </div>
+            <div class="col-lg-2 offset-lg-3 col-6 offset-4">
                 <div class="p-2 " >
                     <ul>
                         <li class="nav-item dropdown" style="list-style: none;font-size:0.7rem">
@@ -241,74 +246,187 @@
         
 
       <div style="font-size: 0.7rem" >
-          <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table te0xt-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
-                            
-  
-              @foreach ( $sections as $sec )  
-              {{-- <tr>          
-                 @if ($sec->id_projet != "")
-                     
-                 <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th>
-                 @else
-                 @endif --}}
-                 {{-- <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th> --}}
-                 @foreach ( $plans as $item )
-                 @foreach ($avoirs as $it )
-                 
-                 
-                 
-                 @if ($sec->id == $item->id_section)
-                 @if ($it->id_items == $item->id)
-                 <tr>          
-                         <th rowspan="" class="border" style="background:rgba(91, 125, 137, 0.293)">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
-              
-                 
-                              @if ($it->date_debut > 0)
-                                  <td class="border-0 bg-white"></td>
-                              <td  colspan="{{$it->date_debut}}" class="border-0 bg-white"></td>
-                              <td  title="{{$item->designation}}" colspan="{{$it->duree}}" class=" border-0 bg-white" style="font-size: 0.8rem;height:0.7px;padding-left:0;" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
+        @if ($total_colonne > 30)
+            <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table text-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
+                                
+    
+                @foreach ( $sections as $sec )  
+                {{-- <tr>          
+                @if ($sec->id_projet != "")
+                    
+                <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th>
+                @else
+                @endif --}}
+                {{-- <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th> --}}
+                @foreach ( $plans as $item )
+                @foreach ($avoirs as $it )
+                
+                
+                
+                @if ($sec->id == $item->id_section)
+                @if ($it->id_items == $item->id)
+                {{-- originale mandeha --}}
+                {{-- <tr>          
+                        <th rowspan="" class="border" style="background:rgba(91, 125, 137, 0.293)">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
+                
+                
+                                @if ($it->date_debut > 0)
+                                    <td class="border-0 bg-white"></td>
+                                <td  colspan="{{$it->date_debut}}" class="border-0 bg-white"></td>
+                                <td  title="{{$item->designation}}" colspan="{{$it->duree}}" class=" border-0 bg-white" style="font-size: 0.8rem;height:0.7px;padding-left:0;" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
                                 <div data-aos="fade-right" data-aos-delay="600" class="progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
                             </td>
-  
-                              @else
-                             <td  class="border-0 bg-white"></td>
-                             <td title="{{$item->designation}}"  colspan="{{$it->duree}}" class=" border-0 bg-white " style="font-size: 0.8rem;padding-left:0;height:0.7px" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
+
+                                @else
+                            <td  class="border-0 bg-white"></td>
+                            <td title="{{$item->designation}}"  colspan="{{$it->duree}}" class=" border-0 bg-white " style="font-size: 0.8rem;padding-left:0;height:0.7px" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
                                 <div data-aos="fade-right" data-aos-delay="800" class=" pl-0 progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
                             </td>
-                              @endif
-                    </tr>
-                          {{-- <th class="bg-white rounded-3"></th> --}}
-  
-                  @endif
-                  @endif
-                  @endforeach
-                  @endforeach
-              @endforeach
-          
+                                @endif
+                    </tr> --}}
+                    {{-- fin originale mandeha --}}
+                    {{-- esssai click click --}}
+                    <tr>          
+                        <th rowspan="" class="border fw-bold w-100" style="background:rgba(91, 125, 137, 0.293); font-size:0.6rem">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} Jour </th>
             
-                  <tr>
-                      {{-- <td class="border-0 bg-white"></td> --}}
-                  </tr>
-                  <tr>
-                  
-                      
-                      <th class="border bg-dark text-white text-center">Etape</th>
-                      
-                      
-                      <td class="border-0 bg-white"></td>
-                   
-                      @for ($i = 1;$i<$total_colonne+1;$i++)
-                          <td  class=" bg-white border-top-0 border " style="box-shadow:0 0 1px black;padding:5px;font-size:0.7rem">Jour {{$i}}</td>
-                      @endfor
-                      {{-- @for ($i = 1;$i<$total_colonne+1;$i++)
-                      <th   class=" bg-white border-top-0 " style="box-shadow:0 0 1px black;padding:10px;font-size:0.7rem">J{{$i}}</th>
-                  @endfor --}}
-                      
-                      </tr>
-                     
-                  
+                
+                            @if ($it->date_debut > 0)
+                                <td class="border-0 bg-white"></td>
+                            <td  colspan="{{$it->date_debut /5}}" class="border-0  bg-white "></td>
+                            <td  title="{{$item->designation}}" colspan="{{$it->duree / 5}}" class="border-0 bg-white " style="font-size: 0.8rem;height:0.7px;padding-left:0;" wire:click="modal('{{$item->id}}','{{$item->designation}}')" >
+                                <div    data-aos="fade-right" data-aos-delay="600" class="  progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
+                            </td>
+
+                            @else
+                            <td  class="border-0 bg-white"></td>
+                            <td title="{{$item->designation}}"  colspan="{{$it->duree / 5}}" class="border-0  bg-white " style="font-size: 0.8rem;padding-left:0;height:0.7px" wire:click="modal('{{$item->id}}','{{$item->designation}}')" >
+                                <div data-aos="fade-right" data-aos-delay="800" class=" pl-0 progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm   {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width s ease 0s;"></div>
+                            </td>
+                            @endif
+                    </tr>
+                            {{-- <th class="bg-white rounded-3"></th> --}}
+
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
+                @endforeach
+            
+            
+                    <tr>
+                        {{-- <td class="border-0 bg-white"></td> --}}
+                    </tr>
+                    <tr>
+                    
+                        
+                        <th class="border bg-dark text-white text-center">Etape</th>
+                        
+                        
+                        <td class="border-0 bg-white"></td>
+                    
+                        @for ($i = 1;$i<($total_colonne/2)+1;$i++)
+                            <td title="{{$i}}e semaine" wire:click="submited('{{$i}}')" id="debut" class=" bg-white border-top-0 border " style="box-shadow:0 0 1px black;padding:5px;font-size:0.7rem">Semaine {{$i}}</td>
+                        @endfor
+                        {{-- @for ($i = 1;$i<$total_colonne+1;$i++)
+                        <th   class=" bg-white border-top-0 " style="box-shadow:0 0 1px black;padding:10px;font-size:0.7rem">J{{$i}}</th>
+                    @endfor --}}
+                        
+                        </tr>
+                    
+                    
         
-          </table>
+            </table>
+        @else
+                <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table te0xt-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
+                                    
+        
+                    @foreach ( $sections as $sec )  
+                    {{-- <tr>          
+                    @if ($sec->id_projet != "")
+                        
+                    <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th>
+                    @else
+                    @endif --}}
+                    {{-- <th rowspan="" class="border-0" style="background:white ">{{$sec->designation}}</th> --}}
+                    @foreach ( $plans as $item )
+                    @foreach ($avoirs as $it )
+                    
+                    
+                    
+                    @if ($sec->id == $item->id_section)
+                    @if ($it->id_items == $item->id)
+                    {{-- originale mandeha --}}
+                    {{-- <tr>          
+                            <th rowspan="" class="border" style="background:rgba(91, 125, 137, 0.293)">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
+                    
+                    
+                                    @if ($it->date_debut > 0)
+                                        <td class="border-0 bg-white"></td>
+                                    <td  colspan="{{$it->date_debut}}" class="border-0 bg-white"></td>
+                                    <td  title="{{$item->designation}}" colspan="{{$it->duree}}" class=" border-0 bg-white" style="font-size: 0.8rem;height:0.7px;padding-left:0;" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
+                                    <div data-aos="fade-right" data-aos-delay="600" class="progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
+                                </td>
+
+                                    @else
+                                <td  class="border-0 bg-white"></td>
+                                <td title="{{$item->designation}}"  colspan="{{$it->duree}}" class=" border-0 bg-white " style="font-size: 0.8rem;padding-left:0;height:0.7px" wire:click="modifier('{{$item->id}}','{{$item->designation}}')" >
+                                    <div data-aos="fade-right" data-aos-delay="800" class=" pl-0 progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
+                                </td>
+                                    @endif
+                        </tr> --}}
+                        {{-- fin originale mandeha --}}
+                        {{-- esssai click click --}}
+                        <tr>          
+                            <th class="border fw-bold w-100" style="background:rgba(91, 125, 137, 0.293); font-size:0.5rem">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jour </th>
+                
+                    
+                                @if ($it->date_debut > 0)
+                                    <td class="border-0 bg-white"></td>
+                                <td  colspan="{{$it->date_debut}}" class="border-0 bg-white"></td>
+                                <td  title="{{$item->designation}}" colspan="{{$it->duree}}" class=" border-0 bg-white " style="font-size: 0.8rem;height:0.7px;padding-left:0;" wire:click="modal('{{$item->id}}','{{$item->designation}}')" >
+                                    <div    data-aos="fade-right" data-aos-delay="600" class=" progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transition: width 2s ease 0s;"></div>
+                                </td>
+
+                                @else
+                                <td  class="border-0 bg-white"></td>
+                                <td title="{{$item->designation}}"  colspan="{{$it->duree}}" class=" border-0 bg-white " style="font-size: 0.8rem;padding-left:0;height:0.7px" wire:click="modal('{{$item->id}}','{{$item->designation}}')" >
+                                    <div data-aos="fade-right" data-aos-delay="800" class=" pl-0 progress-bar text-center border-0 fw-bold text-white  rounded-end-4 shadow-sm  {{$sec->couleur}}" data-toggle="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%;height:100%; transiti2on: width s ease 0s;"></div>
+                                </td>
+                                @endif
+                        </tr>
+                                {{-- <th class="bg-white rounded-3"></th> --}}
+
+                        @endif
+                        @endif
+                        @endforeach
+                        @endforeach
+                    @endforeach
+                
+                
+                        <tr>
+                            {{-- <td class="border-0 bg-white"></td> --}}
+                        </tr>
+                        <tr>
+                        
+                            
+                            <th class="border bg-dark text-white text-center">Etape</th>
+                            
+                            
+                            <td class="border-0 bg-white"></td>
+                        
+                            @for ($i = 1;$i<$total_colonne+1;$i++)
+                                <td title="{{$i}}e jour" wire:click="submited('{{$i}}')" id="debut" class=" bg-white border-top-0 border " style="box-shadow:0 0 1px black;padding:5px;font-size:0.7rem">Jour {{$i}}</td>
+                            @endfor
+                            {{-- @for ($i = 1;$i<$total_colonne+1;$i++)
+                            <th   class=" bg-white border-top-0 " style="box-shadow:0 0 1px black;padding:10px;font-size:0.7rem">J{{$i}}</th>
+                        @endfor --}}
+                            
+                            </tr>
+                        
+                        
+            
+                </table>
+        @endif
 
       </div>
 
@@ -327,7 +445,7 @@
       </div>
     </div>
 
-    <div id="modal" data-aos="zoom-in" data-aos-delay="600"  class="fade {{$form}} shadow border  bg-white " method="POST">
+    {{-- <div id="modal" data-aos="zoom-in" data-aos-delay="600"  class="fade {{$form}} shadow border  bg-white " method="POST">
         <div class="   rounded-3 p-2">
             <h5 class="">Paramétre de l'item</h5>
             <hr>
@@ -357,13 +475,21 @@
               <hr>
               
                 <button type="submit" class="btn btn-outline-primary border-primary btn-sm  mt-2 shadow-sm rounded-5 offset-lg-7 ">Valider</button>
-                <button class="btn btn-outline-danger border-danger btn-sm  mt-2 shadow-sm rounded-5  " wire:click="exit">
-                    <a href="#user-list-table" class="nav-link">Annuler</a>
+                <button class="btn btn-outline-danger border-danger btn-sm  mt-2 shadow-sm rounded-5  ">
+                    <a href="#user-list-table"  wire:click="exit" class="nav-link">Annuler</a>
                 </button>
                
             </form>
         </div>
-    </div>
+    </div> --}}
 
+    @if (session('notif'))
+    <div id="notification" class="rounded-5 active shadow text-white ">
+     <a href="" class="nav-link">
+      {{session('notif')}} <span class="text-danger fw-bold">! </span>
+     
+     </a>
+    </div>
+  @endif
 
 </div>

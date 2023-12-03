@@ -12,6 +12,11 @@ use Livewire\Component;
 class Dev extends Component
 {
       public $recherche;
+      public $checkData = [];
+      public $disabled = "disabled";
+      public $total;
+   
+
     
    
      public function create(){
@@ -27,6 +32,18 @@ class Dev extends Component
         return redirect('/sectionDev');
         
      }
+     public function deleteSelected(){
+     
+      Items::query()
+          ->where('id',$this->checkData)
+          ->delete();
+
+      $this->checkData = [];
+
+      return redirect("/parametre/section")
+      ->with('notif',"Effacé avec succés");
+  }
+
 
      public function remove($rem){
         Items::where('id',$rem)->delete();
@@ -38,12 +55,21 @@ class Dev extends Component
     
      public function render()
      {
-        
+      if(count($this->checkData) > 0){
+         $this->disabled = "";
+         $this->total = count($this->checkData);
+     }else
+     {
+          $this->disabled = "disabled";
+     }
       
 
          return view('livewire..section.dev',[
-             "items" => Items::orderby('id')->where('designation','like','%'.$this->recherche.'%')->paginate(9),
+             "items" => Items::orderby('id')->where('designation','like','%'.$this->recherche.'%')
+             ->OrWhere("id_section",'like','%'.$this->recherche.'%')
+             ->paginate(9),
              "sections" => Sections::all(),
+             "projets"=>Projets::all(),
              
           
 

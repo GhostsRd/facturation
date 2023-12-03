@@ -40,11 +40,13 @@ Route::get('/gererProjet', [App\Http\Controllers\gestion\GererProjet::class, 'in
 
 
 Route::get('/parametre/section', [App\Http\Controllers\section\Section::class, 'index'])->middleware('auth');
+Route::post('/section/update', [App\Http\Livewire\Section\Section::class, 'update'])->middleware('auth');
+
 Route::get('/items', [App\Http\Controllers\section\Dev::class, 'index'])->middleware('auth');
 Route::get('/chiffrage', [App\Http\Controllers\section\Test::class, 'index'])->middleware('auth');
 Route::get('/sectionTest/{id}', [App\Http\Livewire\Section\Test::class, 'removeitem'])->middleware('auth');
 Route::post('/sectionTest/modifier/', [App\Http\Livewire\Section\Test::class, 'updateitems'])->middleware('auth');
-
+ 
 
 Route::get('/parametrage/gererDevis', [App\Http\Controllers\parametrage\GererDevis::class, 'index'])->middleware('auth');
 
@@ -57,8 +59,9 @@ Route::get('/facturedevis', [App\Http\Controllers\facturation\Facture::class, 'f
 
 
 Route::get('/profile', [App\Http\Controllers\parametrage\profile::class, 'index'])->middleware('auth');
-Route::post('profile/update', [App\Http\Livewire\Parametrage\Profile::class, 'update'])->middleware('auth');
+Route::post('/profile/update', [App\Http\Livewire\Parametrage\Profile::class, 'update'])->middleware('auth');
 Route::get('/employer', [App\Http\Controllers\parametrage\employer::class, 'index'])->middleware('auth');
+Route::post('/employer/update', [App\Http\Livewire\Employer::class, 'update'])->middleware('auth');
 
 Route::get('/planification', [App\Http\Controllers\planning\plannification::class, 'index'])->middleware('auth');
 Route::get('/planification/gerer', [App\Http\Controllers\planning\GererPlanning::class, 'index'])->middleware('auth');

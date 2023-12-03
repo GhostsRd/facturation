@@ -16,7 +16,7 @@ use function PHPUnit\Framework\isNull;
 
 class GererDevis extends Component
 {
-    use WithPagination;
+    
     public $checkData = [];
     public $disabled = "disabled";
     public $total ;

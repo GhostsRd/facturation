@@ -3,7 +3,39 @@
         <h3  id="titre-prof"> Devis</h3>
         <p id="text-prof">Page  / Devis</p>   
     </div>  
-    <div id="modal" class="form {{ $formCLient}} shadow rounded-start-5 p-4 rounded-top-0 rounded-end-top-0"  method="POST">
+    <div id="modal" class="form shadow w-25  {{ $formCLient}}" method="POST">
+          
+        <div class="col-lg-12">
+          <h5 class="fw-bold title-form text-center" >Ajouter un client</h5>
+           <hr>
+            <form wire:submit.prevent="createClient">
+                @csrf
+
+                      <label for="projet" class="text-muted m-2 " >{{_('Nom  *')}}</label>
+                      <input type="text" id="nom" wire:model='nom' class="form-control-plaintext p-1 ps-2 w-100  hover mt-1 rounded-5 shadow-sm" placeholder="Nom du client" required>   
+  
+                      <label for="prerequis"  class="text-muted m-2">{{_('Prénom *')}}</label>             
+                      <input type="text" wire:model="prenom"  class="form-control-plaintext p-1 ps-2 w-100  hover mt-1 rounded-5 shadow-sm" placeholder="Prénom du client" required>        
+  
+            
+                      <label for="contact" class="text-muted m-2">{{_('Contact *')}}</label>
+                      <input type="text" wire:model="contact" id="contact"  class="form-control-plaintext p-1 ps-2 w-100  hover mt-1 rounded-5 shadow-sm" placeholder="Contact du client" required>
+                     <hr>
+            
+               <div class="text-center">
+                <button type="submit" class="btn btn-sm  btn-primary mt-2 rounded-5 text-white fw-bold">Enregistrer</button>
+                <button  wire:click="form1"   class="btn btn-sm  btn-warning mt-2 rounded-5 text-white fw-bold">
+                    Annuler
+
+                </button>
+               </div>
+                
+              </form>
+          </div>
+
+      
+  </div>
+    {{-- <div id="modal" class="form {{ $formCLient}} shadow rounded-start-5 p-4 rounded-top-0 rounded-end-top-0"  method="POST">
     
            
               
@@ -41,7 +73,7 @@
             </div>
         </div>
         
-    </div>
+    </div> --}}
    
    
     <div class="container   ">
@@ -145,11 +177,11 @@
                                              
                                              @if ($client->id == $devi->id_client)
                                            <option value="{{$client->id}}">
-                                               {{$client->nom}}
+                                               {{$client->nom}} {{$client->prenom}}
                                             </option>
                                         @endif
 
-                                            <option value="{{$client->id}}">{{$client->nom}}</option>
+                                            <option value="{{$client->id}}">{{$client->nom}} {{$client->prenom}}</option>
                                             @endforeach
                                                 
                                         </select>
@@ -179,7 +211,7 @@
                                                     @if ($devi->id_projet == $projet->id)
                                                     @foreach ($employers as $employer)
                                                         @if($employer->id == $projet->id_employer)   
-                                                            <option value="">{{$employer->nom}}</option>
+                                                            <option value="">{{$employer->nom}} {{$employer->prenom}}</option>
                                                         @endif
                                                     @endforeach
                                                     @endif
@@ -187,7 +219,7 @@
                                                 @endforeach
                                             
                                             @foreach ($employers as $employer)
-                                           <option value="{{$employer->id}}">{{$employer->nom}}</option>
+                                           <option value="{{$employer->id}}">{{$employer->nom}} {{$employer->prenom}}</option>
                                            @endforeach
                    
                                            </select>
@@ -250,35 +282,7 @@
                  {{-- <hr class="col-lg-5 offset-3"> --}}
  
                     <div class="row">
-                        {{-- <div class="col-lg-1 text-center  p-2 rounded-3 offset-1 h-75 mt-4  ">
-                            <button disabled="disabled" class="border-0 rounded-5  btn shadow  res active" >1</button><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            
-                    
-                            <button disabled="disabled" class="past rounded-5 border-0 shadow btn">2</button> <br>
-                            <span class="text-primary fw-bold " >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            
-                        
-                            <button disabled="disabled" class="rounded-5 border-0 shadow btn res">3</button> <br>
-                            <span class="text-primary fw-bold " >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            
-                
-                            <button disabled="disabled" class=" rounded-5 border-0 shadow btn  res">4</button><br>
-                            <span class="text-primary fw-bold " >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            <span class="text-primary fw-bold" >. </span><br>
-                            
-                        
-                            <button disabled="disabled" class=" rounded-5 border-0 shadow btn  res">5</button><br>
-
-
-                        </div> --}}
+                      
                         <div class="col-lg-6 offset-lg-3">
                             
                             <form wire:submit.prevent="createDevis" class="bg-white rounded-3 shadow-sm">
@@ -303,7 +307,7 @@
                                     <select name="" id="" class="form-control m-2 mr-0 text-muted shadow-sm rounded-3 " wire:model="num_client" placeholder="selext le client" required>
                                         <option value="">selectionner ici</option>
                                         @foreach ($clients as $client)
-                                        <option value="{{$client->id}}">{{$client->nom}}</option>
+                                        <option value="{{$client->id}}">{{$client->nom}} {{$client->prenom}}</option>
                                         @endforeach
                                             
                                     </select>
@@ -322,7 +326,7 @@
                                             <option value="">selectionner ici</option>
                                             @foreach ($employers as $employer)
                                                 
-                                        <option value="{{$employer->id}}">{{$employer->nom}}</option>
+                                        <option value="{{$employer->id}}">{{$employer->nom}} {{$employer->prenom}}</option>
                                         @endforeach
                 
                                         </select>

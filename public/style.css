@@ -1,3 +1,37 @@
+
+#plani:hover,#plani:focus{
+ background: #000;
+}
+#debut:hover{
+  color: red;
+
+  background: #012970;
+  animation: 2s animtd infinite;
+}
+@keyframes animtd {
+  50%{
+  color: #012970;
+
+  }
+}
+@media print{
+
+nav,.hide {
+  opacity : 0;
+  top: 100%;
+  position: absolute;
+}
+#printer,#printer * {
+
+  opacity: 1;
+
+}
+.show {
+  opacity: 1;
+  position: relative;
+  top: auto;
+}
+}
 #bg-gris{
   background-color: rgba(128, 128, 128, 0.542);
   color: black;

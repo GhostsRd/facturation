@@ -1,113 +1,106 @@
 <div>
     <div class="container   ">
-        <h3  id="titre-prof">Page Client</h3>
-        <p id="text-prof">Page / Gerer Client</p>   
+      <div class="row ">
+        <div class="col-lg-4">
+
+            <h3  id="titre-prof"> Client</h3>
+            <p id="text-prof">Paramétre  / Client</p>   
+        </div>
+        <div class="col-lg-2 offset-lg-3"></div>
+        <div class="col-lg-3 mt-5 ">
+            <button wire:click="formajout" class="btn btn-sm btn-primary offset-lg-8  fw-bold border-0 rounded-4 shadow-sm">
+                <a  class="nav-link">
+                Nouveau 
+                <svg class="icon-32 " width="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M18.8088 9.021C18.3573 9.021 17.7592 9.011 17.0146 9.011C15.1987 9.011 13.7055 7.508 13.7055 5.675V2.459C13.7055 2.206 13.5026 2 13.253 2H7.96363C5.49517 2 3.5 4.026 3.5 6.509V17.284C3.5 19.889 5.59022 22 8.16958 22H16.0453C18.5058 22 20.5 19.987 20.5 17.502V9.471C20.5 9.217 20.298 9.012 20.0465 9.013C19.6247 9.016 19.1168 9.021 18.8088 9.021Z" fill="currentColor"></path>                                <path opacity="0.4" d="M16.0842 2.56737C15.7852 2.25637 15.2632 2.47037 15.2632 2.90137V5.53837C15.2632 6.64437 16.1742 7.55437 17.2792 7.55437C17.9772 7.56237 18.9452 7.56437 19.7672 7.56237C20.1882 7.56137 20.4022 7.05837 20.1102 6.75437C19.0552 5.65737 17.1662 3.69137 16.0842 2.56737Z" fill="currentColor"></path>                                <path d="M14.3672 12.2364H12.6392V10.5094C12.6392 10.0984 12.3062 9.7644 11.8952 9.7644C11.4842 9.7644 11.1502 10.0984 11.1502 10.5094V12.2364H9.4232C9.0122 12.2364 8.6792 12.5704 8.6792 12.9814C8.6792 13.3924 9.0122 13.7264 9.4232 13.7264H11.1502V15.4524C11.1502 15.8634 11.4842 16.1974 11.8952 16.1974C12.3062 16.1974 12.6392 15.8634 12.6392 15.4524V13.7264H14.3672C14.7782 13.7264 15.1122 13.3924 15.1122 12.9814C15.1122 12.5704 14.7782 12.2364 14.3672 12.2364Z" fill="currentColor"></path>                                </svg>                            
+
+                </a></button>
+        </div>
     </div>  
    
-    <div class="container  " style="font-size: 0.75rem">
+    <div  class="container p-2 rounded-2" style="font-size: 0.75rem">
 
         {{-- menu icons --}}
-        <div class="bg-white  rounded-3">
+        <div class="bg-white rounded-3 shadow-sm">
+        <form wire:submit.prevent="deleteSelected">
             
-         <table id="user-list-table" class="table card-body  text-center rounded-1 shadow-sm  display  " role="grid" data-bs-toggle="data-table">
-                    <div class="row p-2">
-                        <div class="col-lg-2 ">
-                          <h5 class="fw-bold " id="titre-prof">Liste de client
+            <table class="  table  card-body  rounded-3 shadow-sm border-0 text-capitalize text-center   " style="border:0;overflow:hidden" >
+                      <div class="row p-2">
+                          <div class="col-lg-2 ">
+                            <h5 class="fw-bold " id="titre-prof">Liste de client
 
-                          </h5>
+                            </h5>
+                  
+                          </div>
+
+                          <div class="col-lg-4 offset-lg-5 col-8">
+                            <input type="text" name="" wire:model="recherche" id="" placeholder="Recherche ..."  id="form-hovered" class="form-control-sm border-0 w-100  rounded-5  shadow-sm">
+                          </div>
+
+                          <div class="col-lg-1  ">
+                  
+                            <button   
+                        {{
+                          $disabled
+                        }}
+                            class="btn btn-outline-danger border-0 btn-sm ms-4  rounded-5 anim">
+                                <svg class="icon-32    " width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M20.708 6.23975H3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                            
                 
+                                <sub class="text-primary fw-bold  rounded-5 "> {{$total}}</sub>
+                                </button>
                         </div>
-
-                        <div class="col-lg-4 offset-lg-5 col-8">
-                          <input type="text" name="" id="" placeholder="Recherche ..."  id="form-hovered" class="form-control-sm border-0 w-100  rounded-5  shadow-sm">
                         </div>
-
-                        <div class="col-1 col-lg-1">
-                          <button wire:click="formajout" class="btn btn-sm btn-primary m fw-bold border-0 rounded-4 shadow-sm">
-                            <a  class="nav-link ">
-                            Nouveau 
-                            {{-- <svg class="icon-20" width="5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z" fill="currentColor"></path>                                <path opacity="0.4" d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z" fill="currentColor"></path>                                <path opacity="0.4" d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z" fill="currentColor"></path>                                <path d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z" fill="currentColor"></path>                                <path opacity="0.4" d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z" fill="currentColor"></path>                                <path d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z" fill="currentColor"></path>                                </svg>                             --}}
-        
-                            </a></button>
-                                
-                          {{-- <ul class="col-lg-2"> --}}
+                      
+                  
+                      
+          
+                  
+                      <div>
                             
-                           
-                            {{-- <li style="list-style: none;" >
-                                <a class="nav-link collapsed " data-bs-target="#menu-nav" data-bs-toggle="collapse" href="#">
-                                 
-                                    <i class="bi bi-chevron-down ms-auto">
-                
-                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="none" d="M0 0h24v24H0V0z"></path><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-                                        </svg>
-                                    </i>
-                                </a>
-                                <ul id="menu-nav"  class=" collapse ">
-                                    <li class="p-2  rounded-2  text-center shadow-sm  text-bold " style="list-style: none">
-                                        
-                                         <span class="rounded-1 p-2 fw-bold text-warning " wire:click="formajout">nouveau</span>
-                                         <hr>
-                                         <span class="rounded-5 p-2 fw-bold text-warning " wire:click="active2">Modifier</span>
-                                         <hr>
+                      <thead>
+                        <tr>
+                          <th class="border-0"><input type="checkbox" ></th>
+                          
+                            <th class="fw-bold p-2 border-0">Nom</th>
+                            <th class="fw-bold p-2 border-0">Prenom</th>
+                            <th class="fw-bold p-2 border-0">Contact</th>
+                            <th class="fw-bold p-2 border-0" >Action</th>
+                            {{-- <th class="fw-bold p-2 border-0" >Supprimer</th> --}}
+
+                            
+                          
+                        </tr>
+                      </thead>
+                      
+                      <tbody>
+                            
+                      @foreach ($clients as $dat )                       
+                              <tr>
+                                    <td class="bg-white p-2 border-0" >
+                                      <input type="checkbox" wire:model="checkData" value="{{$dat->id}}" class="border-0">
+                                  </td>
+                                  <td  class="text-dark bg-white border-top-0 border-0">
+                                  {{$dat->nom}}</td>
+                                  <td  class="text-muted bg-white border-top-0 border-0">{{$dat->prenom}}</td>
+                                  <td  class="text-muted bg-white border-top-0 border-0">{{$dat->contact}}</td>
+                                
+                                    <td class="bg-white border-top-0 border-0">
+                                      
+                                      <svg  class="icon-32 text-warning" wire:click="formModifier('{{$dat->id}}','{{$dat->nom}}','{{$dat->prenom}}','{{$dat->contact}}')" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z" fill="currentColor"></path>                                <path d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z" fill="currentColor"></path>                                <path opacity="0.4" d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z" fill="currentColor"></path>                                </svg>                            
+                      
+                                      </td>
+                                      {{-- <td class="bg-white border-top-0 border-0">
+                                      
+                                            <svg wire:click="delete('{{$dat->id}}')" class="anim text-primary icon-32 rounded-1" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M19.643 9.48851C19.643 9.5565 19.11 16.2973 18.8056 19.1342C18.615 20.8751 17.4927 21.9311 15.8092 21.9611C14.5157 21.9901 13.2494 22.0001 12.0036 22.0001C10.6809 22.0001 9.38741 21.9901 8.13185 21.9611C6.50477 21.9221 5.38147 20.8451 5.20057 19.1342C4.88741 16.2873 4.36418 9.5565 4.35445 9.48851C4.34473 9.28351 4.41086 9.08852 4.54507 8.93053C4.67734 8.78453 4.86796 8.69653 5.06831 8.69653H18.9388C19.1382 8.69653 19.3191 8.78453 19.4621 8.93053C19.5953 9.08852 19.6624 9.28351 19.643 9.48851Z" fill="currentColor"></path>                                <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="currentColor"></path>                                </svg>                            
                                   
                                         
-                                    </li>
-                                        
-                                </ul>
-                            </li> --}}
-                          {{-- </ul> --}}
-                        </div>
-                      </div>
-                     
-                
                     
-                
-                    {{-- container table list --}}
-                
-                    <div>
-                          
-                    <thead>
-                       <tr>
-                          
-                          <th class="fw-bold p-2 border-0">Id client</th>
-                          <th class="fw-bold p-2 border-0">Nom</th>
-                          <th class="fw-bold p-2 border-0">Prenom</th>
-                          <th class="fw-bold p-2 border-0">Contact</th>
-                          <th class="fw-bold p-2 border-0" >Modifier</th>
-                          <th class="fw-bold p-2 border-0" >Supprimer</th>
-
-                          
-                         
-                       </tr>
-                    </thead>
-                    
-                    <tbody>
-                          
-                    @foreach ($data as $dat )                       
-                            <tr>
-                                <td class="text-muted bg-white border-top-0">{{$dat->id}}</td>
-                                <td  class="text-dark bg-white border-top-0"><span class="bg-purple text-dark badge">{{$dat->nom}} </span></td>
-                                <td  class="text-muted bg-white border-top-0">{{$dat->prenom}}</td>
-                                <td  class="text-muted bg-white border-top-0">{{$dat->contact}}</td>
-                               
-                                  <td class="bg-white border-top-0">
-                                     
-                                    <svg  class="icon-32 text-warning" wire:click="formModifier('{{$dat->id}}','{{$dat->nom}}','{{$dat->prenom}}','{{$dat->contact}}')" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z" fill="currentColor"></path>                                <path d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z" fill="currentColor"></path>                                <path opacity="0.4" d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z" fill="currentColor"></path>                                </svg>                            
-                     
-                                    </td>
-                                    <td class="bg-white border-top-0">
-                                    
-                                          <svg wire:click="delete('{{$dat->id}}')" class="anim text-primary icon-32 rounded-1" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M19.643 9.48851C19.643 9.5565 19.11 16.2973 18.8056 19.1342C18.615 20.8751 17.4927 21.9311 15.8092 21.9611C14.5157 21.9901 13.2494 22.0001 12.0036 22.0001C10.6809 22.0001 9.38741 21.9901 8.13185 21.9611C6.50477 21.9221 5.38147 20.8451 5.20057 19.1342C4.88741 16.2873 4.36418 9.5565 4.35445 9.48851C4.34473 9.28351 4.41086 9.08852 4.54507 8.93053C4.67734 8.78453 4.86796 8.69653 5.06831 8.69653H18.9388C19.1382 8.69653 19.3191 8.78453 19.4621 8.93053C19.5953 9.08852 19.6624 9.28351 19.643 9.48851Z" fill="currentColor"></path>                                <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="currentColor"></path>                                </svg>                            
-                                 
-                                      
+                                    </td> --}}
+                              </tr>
+                          @endforeach
+                          </tbody>
                   
-                                  </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                 
-         </table>
+          </table>
+        </form>
      </div>
             <div id="modal" class="form shadow w-25  {{$form}}" method="POST">
           

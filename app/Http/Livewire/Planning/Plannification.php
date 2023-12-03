@@ -115,6 +115,127 @@ class Plannification extends Component
     {
         $this->form = "";
     }
+    public function modal($val,$designation){
+        $this->id_item = $val;
+        $this->design_item = $designation;
+    }
+    public function submited($val){
+        if($this->total_colonne > 30){
+            if($this->id_item == ""){
+                return redirect('/planification')->with('notif',"sectionner d'abord l'item puis la date de debut !");
+            }else{
+                $this->devis = Devis::max('created_at');
+                $this->tests = Devis::where('created_at', $this->devis)->get();
+        
+                foreach ($this->tests as $te) {
+                    $this->it = $te->id_projet;
+                    $pl = $te->choix_planification;
+                }
+        
+                $verification = Avoirs::where('id_items', $this->id_item)->get();
+                $identifiant = 0;
+                foreach ($verification as $ver) {
+                    $identifiant = $ver->id;
+                    $id_plan = $ver->id_planification;
+                }
+                $test = Planifications::where('id', $id_plan)->get();
+        
+                foreach ($test as $te) {
+                    $date_debut = $te->date_debut;
+                }
+                $this->projets = Projets::where('id', $this->it)->get();
+                foreach ($this->projets  as $pro) {
+                    $id_projet = $pro->id;
+                }
+                $get_avoirs =  Avoirs::where('id_projet', $id_projet)->get();
+                foreach ($get_avoirs  as $res) {
+                    $this->id_pl = $res->id_planification;
+                }
+        
+        
+                if ($identifiant != 0) {
+                    Avoirs::where('id_items', $this->id_item)->update([
+                        // "duree" =>$this->delai,
+                        "date_debut" => $val*5 - 1,
+                    ]);
+                    
+                }
+        
+                $maxDate_item = DB::select('select max(duree + date_debut) as date from avoirs where   id_planification =' . $pl . '');
+                foreach ($maxDate_item as $max) {
+                    $delai = $max->date;
+                    $date_fianle = date('Y-m-d', strtotime($date_debut) + ($delai * 24 * 60 * 60));
+      
+                    Planifications::where('id', $id_plan)->update([
+                        "delai" => $delai,
+                        "date_fin" => $date_fianle,
+                    ]);
+        
+                    return redirect('/planification')->with('notif'," ".$this->design_item." a été deplacé avec succés :) ");
+                }
+            
+            }
+           
+        }else{
+            if($this->id_item == ""){
+                return redirect('/planification')->with('notif',"sectionner d'abord l'item puis la date de debut !");
+            }else{
+                $this->devis = Devis::max('created_at');
+                $this->tests = Devis::where('created_at', $this->devis)->get();
+        
+                foreach ($this->tests as $te) {
+                    $this->it = $te->id_projet;
+                    $pl = $te->choix_planification;
+                }
+        
+                $verification = Avoirs::where('id_items', $this->id_item)->get();
+                $identifiant = 0;
+                foreach ($verification as $ver) {
+                    $identifiant = $ver->id;
+                    $id_plan = $ver->id_planification;
+                }
+                $test = Planifications::where('id', $id_plan)->get();
+        
+                foreach ($test as $te) {
+                    $date_debut = $te->date_debut;
+                }
+                $this->projets = Projets::where('id', $this->it)->get();
+                foreach ($this->projets  as $pro) {
+                    $id_projet = $pro->id;
+                }
+                $get_avoirs =  Avoirs::where('id_projet', $id_projet)->get();
+                foreach ($get_avoirs  as $res) {
+                    $this->id_pl = $res->id_planification;
+                }
+        
+        
+                if ($identifiant != 0) {
+                    Avoirs::where('id_items', $this->id_item)->update([
+                        // "duree" =>$this->delai,
+                        "date_debut" => $val - 1,
+                    ]);
+                    
+                }
+        
+                $maxDate_item = DB::select('select max(duree + date_debut) as date from avoirs where   id_planification =' . $pl . '');
+                foreach ($maxDate_item as $max) {
+                    $delai = $max->date;
+                    $date_fianle = date('Y-m-d', strtotime($date_debut) + ($delai * 24 * 60 * 60));
+      
+                    Planifications::where('id', $id_plan)->update([
+                        "delai" => $delai,
+                        "date_fin" => $date_fianle,
+                    ]);
+        
+                    return redirect('/planification')->with('notif'," ".$this->design_item." a été deplacé avec succés :) ");
+                }
+            
+            }
+        }
+        
+       
+        
+    }
     public function modifier($val, $design)
     {
 
@@ -132,75 +253,75 @@ class Plannification extends Component
         ]);
         return redirect('/planification');
     }
+    // planning avec modal
+    // public function planning(Request $request)
+    // {
+    //     $this->devis = Devis::max('created_at');
+    //     $this->tests = Devis::where('created_at', $this->devis)->get();
 
-    public function planning(Request $request)
-    {
-        $this->devis = Devis::max('created_at');
-        $this->tests = Devis::where('created_at', $this->devis)->get();
+    //     foreach ($this->tests as $te) {
+    //         $this->it = $te->id_projet;
+    //         $pl = $te->choix_planification;
+    //     }
 
-        foreach ($this->tests as $te) {
-            $this->it = $te->id_projet;
-            $pl = $te->choix_planification;
-        }
+    //     $verification = Avoirs::where('id_items', $request->id_item)->get();
+    //     $identifiant = 0;
+    //     foreach ($verification as $ver) {
+    //         $identifiant = $ver->id;
+    //         $id_plan = $ver->id_planification;
+    //     }
+    //     $test = Planifications::where('id', $id_plan)->get();
 
-        $verification = Avoirs::where('id_items', $request->id_item)->get();
-        $identifiant = 0;
-        foreach ($verification as $ver) {
-            $identifiant = $ver->id;
-            $id_plan = $ver->id_planification;
-        }
-        $test = Planifications::where('id', $id_plan)->get();
-
-        foreach ($test as $te) {
-            $date_debut = $te->date_debut;
-        }
-        $this->projets = Projets::where('id', $this->it)->get();
-        foreach ($this->projets  as $pro) {
-            $id_projet = $pro->id;
-        }
-        $get_avoirs =  Avoirs::where('id_projet', $id_projet)->get();
-        foreach ($get_avoirs  as $res) {
-            $this->id_pl = $res->id_planification;
-        }
+    //     foreach ($test as $te) {
+    //         $date_debut = $te->date_debut;
+    //     }
+    //     $this->projets = Projets::where('id', $this->it)->get();
+    //     foreach ($this->projets  as $pro) {
+    //         $id_projet = $pro->id;
+    //     }
+    //     $get_avoirs =  Avoirs::where('id_projet', $id_projet)->get();
+    //     foreach ($get_avoirs  as $res) {
+    //         $this->id_pl = $res->id_planification;
+    //     }
 
 
-        if ($identifiant != 0) {
-            Avoirs::where('id_items', $request->id_item)->update([
-                // "duree" =>$this->delai,
-                "date_debut" => $request->debut - 1,
-            ]);
+    //     if ($identifiant != 0) {
+    //         Avoirs::where('id_items', $request->id_item)->update([
+    //             // "duree" =>$this->delai,
+    //             "date_debut" => $request->debut - 1,
+    //         ]);
             
-        }
+    //     }
 
-        $maxDate_item = DB::select('select max(duree + date_debut) as date from avoirs where   id_planification =' . $pl . '');
-        foreach ($maxDate_item as $max) {
-            $delai = $max->date;
-            $date_fianle = date('Y-m-d', strtotime($date_debut) + ($delai * 24 * 60 * 60));
-
-
+    //     $maxDate_item = DB::select('select max(duree + date_debut) as date from avoirs where   id_planification =' . $pl . '');
+    //     foreach ($maxDate_item as $max) {
+    //         $delai = $max->date;
+    //         $date_fianle = date('Y-m-d', strtotime($date_debut) + ($delai * 24 * 60 * 60));
 
 
-            Planifications::where('id', $id_plan)->update([
-                "delai" => $delai,
-                "date_fin" => $date_fianle,
-            ]);
 
-            return redirect('/planification');
-        }
-        // else{
 
-        //     Avoirs::create([
-        //         "id_items" => $request->id_item,
-        //         // "duree" =>$this->delai,
-        //         "date_debut" =>$request->debut,
+    //         Planifications::where('id', $id_plan)->update([
+    //             "delai" => $delai,
+    //             "date_fin" => $date_fianle,
+    //         ]);
 
-        //     ]);
+    //         return redirect('/planification');
+    //     }
+    //     // else{
 
-        //     return redirect('/planification');
+    //     //     Avoirs::create([
+    //     //         "id_items" => $request->id_item,
+    //     //         // "duree" =>$this->delai,
+    //     //         "date_debut" =>$request->debut,
 
-        // }
-        return redirect('/planification');
-    }
+    //     //     ]);
+
+    //     //     return redirect('/planification');
+
+    //     // }
+    //     return redirect('/planification');
+    // }
     public function updatedebut()
     {
 
@@ -230,7 +351,7 @@ class Plannification extends Component
         $this->date_fin;
         $this->maxDate_item;
         $this->form;
-        $this->id_item;
+        // $this->id_item;
         $this->design_item;
         $this->planns;
 
@@ -295,7 +416,7 @@ class Plannification extends Component
 
             // $this->total_colonne = DB::table('items')->where('id_projet',$this->it)->sum('temps_passe'),
             // "avoirs" => Avoirs::where("id_items","like",'%'.$this->val.'%')->get(),
-            "avoirs" => Avoirs::where('id_planification', $this->id_pl)->orderby('date_debut')->get(),
+            "avoirs" => Avoirs::where('id_planification', $this->id_pl)->orderby('date_debut',"asc")->get(),
 
             $this->maxDate_item = DB::select('select max(duree + date_debut) as date from avoirs where   id_planification = ' . $this->id_pl . ''),
 

@@ -7,7 +7,7 @@
      <form wire:submit.prevent="deleteSelected">
         <div class="bg-white rounded-3 shadow-sm">
    
-    <table class="  table  card-body  rounded-3 shadow-sm border-0 text-capitalize text-center   " style="border:0;overflow:hidden" >
+    <table class="  table  card-body  rounded-3 shadow-sm border-0 text-capitalize   " style="border:0;overflow:hidden" >
         <div class="row  p-2">
             <div class="col-lg-2">
                 <h5 id="titre-prof" class="m-1 fw-bold">Liste de planning</h5>

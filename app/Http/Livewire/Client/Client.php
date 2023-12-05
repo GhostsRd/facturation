@@ -107,7 +107,7 @@ class Client extends Component
         return view('livewire.client.client', [
             "clients" => Clients::where("nom", 'like', '%' . $this->recherche . '%')
                 ->OrWhere("prenom", 'like', '%' . $this->recherche . '%')
-                ->paginate(8),
+                ->paginate(9),
 
         ]);
     }

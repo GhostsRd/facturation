@@ -37,6 +37,7 @@ Route::post('/devis/update', [App\Http\Livewire\Devis\Devis::class, 'updateDevis
 
 Route::get('/projet', [App\Http\Controllers\projet\Projet::class, 'index'])->middleware('auth');
 Route::get('/gererProjet', [App\Http\Controllers\gestion\GererProjet::class, 'index'])->middleware('auth');
+Route::post('/gererProjet/update', [App\Http\Livewire\Gestion\GererProjet::class, 'update'])->middleware('auth');
 
 
 Route::get('/parametre/section', [App\Http\Controllers\section\Section::class, 'index'])->middleware('auth');
@@ -47,6 +48,7 @@ Route::get('/chiffrage', [App\Http\Controllers\section\Test::class, 'index'])->m
 Route::get('/sectionTest/{id}', [App\Http\Livewire\Section\Test::class, 'removeitem'])->middleware('auth');
 Route::post('/sectionTest/modifier/', [App\Http\Livewire\Section\Test::class, 'updateitems'])->middleware('auth');
  
+
 
 Route::get('/parametrage/gererDevis', [App\Http\Controllers\parametrage\GererDevis::class, 'index'])->middleware('auth');
 

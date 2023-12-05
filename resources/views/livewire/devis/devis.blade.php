@@ -330,7 +330,7 @@
                                         @endforeach
                 
                                         </select>
-                            -
+                            
                                 <label for="nom" class="text-muted m-2 fw-bold">{{_('Projet ')}} <span class="text-danger fw-bold">*</span></label>
                                 
                                     <div class="input-group mb-3">

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Parametrage;
 
 use App\Models\Devis;
 use App\Models\Factures;
+use App\Models\Projets;
 use App\Models\Realisers;
 use App\Models\Sections;
 use DateTime;
@@ -35,7 +36,8 @@ class GererDevis extends Component
             ->delete();
 
         $this->checkData = [];
-        return redirect('/parametrage/gererDevis');
+        return redirect('/parametrage/gererDevis')
+        ->with("notif","Effacé avec succés");
     }
 
     public function remove($id){
@@ -52,7 +54,8 @@ class GererDevis extends Component
        Factures::where('id_devis',$id)->delete();
        
        
-        return redirect('/parametrage/gererDevis');
+        return redirect('/parametrage/gererDevis')
+        ->with("notif","Effacé avec succés");
     }
     public function visualisation($val){
         
@@ -91,6 +94,7 @@ class GererDevis extends Component
         return view('livewire.parametrage.gerer-devis',[
 
             "devis" => Devis::where('objet_chiffrage','like','%'.$this->recherche.'%')->paginate(10),
+            "projets"=> Projets::all(),
         ]);
     }
 }

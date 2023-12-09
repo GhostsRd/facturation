@@ -437,7 +437,7 @@ tbody{
   transition: 0.4s;
 }
 #notification {
-  text-align: center; 
+  /* text-align: center;  */
   background: rgb(218, 231, 223);
   position: fixed;
   opacity: 0;
@@ -448,7 +448,7 @@ tbody{
   /* top: 50% !important;
   left: 35%;
   transform: translateY(-50%) !important; */
-  padding: 10px;
+  padding: 2px;
   z-index: 12;
   border-radius: 10px;
   /* border-top-style:outset ; */
@@ -459,7 +459,7 @@ tbody{
   
   display: flex;
   position: fixed;
-  top: 13% !important;
+  top: 13.5% !important;
   right: 1%;
   transform: translateY(-50%) !important;
   /* top: 50% !important;
@@ -476,7 +476,8 @@ tbody{
 }
 @keyframes notif {
  50%{
-  background: #18d26fa2;
+  background: white;
+  color: #000;
  } 
 }
 

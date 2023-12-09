@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/devis', [App\Http\Controllers\devis\Devis::class, 'index'])->middleware('auth');
 Route::post('/devis/update', [App\Http\Livewire\Devis\Devis::class, 'updateDevis'])->middleware('auth');

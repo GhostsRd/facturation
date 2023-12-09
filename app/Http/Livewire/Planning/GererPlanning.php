@@ -25,13 +25,16 @@ class GererPlanning extends Component
             ->delete();
 
         $this->checkData = [];
-        return redirect('/planification/gerer');
+        return redirect('/planification/gerer')
+        ->with('status',"Effacé avec succes");
     }
   
     public function remove($val){
         Avoirs::where('id_planification',$val)->delete();
         Planifications::where('id',$val)->delete();
-        return redirect('/planification/gerer');
+
+        return redirect('/planification/gerer')
+        ->with('notif',"Effacé avec succes");
     }
     public function mount(){
         

@@ -203,7 +203,7 @@
                                             class="offset-lg-7 "> <br>
                                            
                                            <label for="nom" class="text-muted m-2 fw-bold" >{{_('Chefs de projet ')}}<span class="text-danger fw-bold">*</span></label>
-                                           <select id="" class=" form-control m-2 text-muted  p-2 shadow-sm rounded-3"  >
+                                           <select id="" name="id_employer" class=" form-control m-2 text-muted  p-2 shadow-sm rounded-3"  >
                                               
                                             
                                             @foreach ($projets as $projet)
@@ -211,7 +211,7 @@
                                                     @if ($devi->id_projet == $projet->id)
                                                     @foreach ($employers as $employer)
                                                         @if($employer->id == $projet->id_employer)   
-                                                            <option value="">{{$employer->nom}} {{$employer->prenom}}</option>
+                                                            <option value="{{$employer->id}}">{{$employer->nom}} {{$employer->prenom}}</option>
                                                         @endif
                                                     @endforeach
                                                     @endif

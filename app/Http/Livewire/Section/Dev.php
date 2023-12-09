@@ -47,7 +47,8 @@ class Dev extends Component
 
      public function remove($rem){
         Items::where('id',$rem)->delete();
-        return redirect('/items');
+        return redirect('/items')
+        ->with('notif',"Effacé avec succés");
      }
      public function mount(){
          

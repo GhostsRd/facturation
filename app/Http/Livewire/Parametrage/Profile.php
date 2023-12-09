@@ -45,7 +45,7 @@ class Profile extends Component
         ]);
         
         return redirect("/profile")
-        ->with('status',"Modification effectué");
+        ->with('notif',"Modification effectué");
     }
     
     public function deleteSelected(){
@@ -58,7 +58,7 @@ class Profile extends Component
         $this->checkData = [];
 
         return redirect("/profile")
-        ->with('status',"Effacé avec succes");
+        ->with('notif',"Effacé avec succes");
     }
     public function insert(){
         Profils::create([
@@ -67,7 +67,7 @@ class Profile extends Component
 
         ]);
         return redirect("/profile")
-        ->with('status',"Insertion avec succes");
+        ->with('notif',"Ajouté avec succes");
     }
     public function mount(){
         $this->form;

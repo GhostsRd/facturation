@@ -34,7 +34,7 @@
                         @if ($projet->id == $devis->id_projet)
                            @foreach ($chefs as $chef)
                            @if ($chef->id == $projet->id_employer)
-                          <span class="text-primary"> {{$chef->nom}}</span>
+                          <span class="text-primary"> {{$chef->nom}} {{$chef->prenom}}</span>
                            @endif
                            @endforeach
                         @endif

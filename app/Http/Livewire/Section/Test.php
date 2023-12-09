@@ -236,7 +236,7 @@ class Test extends Component
       Realisers::where('id_items', $id)->delete();
       return redirect('/chiffrage')->with("notif", "Supression avec succéss");
     }else{
-      return redirect('/chiffrage')->with("notif", "Vous ne pouvez pas faire une supression, l'item est associé à un autre devi");
+      return redirect('/chiffrage')->with("info", "Vous ne pouvez pas faire une supression, l'item est associé à un autre devi");
     }
 
   }

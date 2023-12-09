@@ -38,7 +38,7 @@ class Client extends Component
         $this->checkData = [];
 
         return redirect("/client")
-            ->with('status', "Effacé avec succés");
+            ->with('notif', "Effacé avec succés");
     }
     public function formajout()
     {
@@ -59,7 +59,7 @@ class Client extends Component
     public function delete($val)
     {
         Clients::where('id', $val)->delete();
-        return redirect("/client")->with('status', "Effacé avec succes");
+        return redirect("/client")->with('notif', "Effacé avec succes");
     }
     public function create()
     {
@@ -68,7 +68,7 @@ class Client extends Component
             "prenom" => $this->prenom,
             "contact" => $this->contact,
         ]);
-        return redirect("/client")->with('status', "Insertion avec succes");
+        return redirect("/client")->with('notif', "Insertion avec succes");
     }
     public function update(Request $request)
     {
@@ -78,7 +78,7 @@ class Client extends Component
             "prenom" => $request->prenom,
             "contact" => $request->contact,
         ]);
-        return redirect("/client")->with('status', "Modification avec succes");
+        return redirect("/client")->with('notif', "Modification avec succes");
         //
     }
     public function mount()

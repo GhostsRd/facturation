@@ -203,9 +203,12 @@
             <div class="col-lg-4">
                 <h5 id="titre-prof" class="fw-bold m-2">Planning du projet</h5>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 ">
                 @if ($design_item != "")
+                <div class="shadow-sm p-2 rounded-3">
+
                     <span class="fw-bold">Item selectionner : </span> {{$design_item}}
+                </div>
                 @endif
             </div>
             <div class="col-lg-2 offset-lg-3 col-6 offset-4">
@@ -324,7 +327,7 @@
                         
                         <td class="border-0 bg-white"></td>
                     
-                        @for ($i = 1;$i<($total_colonne/2)+1;$i++)
+                        @for ($i = 1;$i<($total_colonne/3)+1;$i++)
                             <td title="{{$i}}e semaine" wire:click="submited('{{$i}}')" id="debut" class=" bg-white border-top-0 border " style="box-shadow:0 0 1px black;padding:5px;font-size:0.7rem">Semaine {{$i}}</td>
                         @endfor
                         {{-- @for ($i = 1;$i<$total_colonne+1;$i++)
@@ -483,13 +486,39 @@
         </div>
     </div> --}}
 
+    {{-- notifcation --}}
     @if (session('notif'))
-    <div id="notification" class="rounded-5 active shadow text-white ">
-     <a href="" class="nav-link">
-      {{session('notif')}} <span class="text-danger fw-bold">! </span>
-     
-     </a>
+
+    <div id="notification" class="rounded-3 p-2 active shadow  ">
+    
+          
+          <svg class="icon-32 text-success" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.67 2H16.34C19.73 2 22 4.38 22 7.92V16.091C22 19.62 19.73 22 16.34 22H7.67C4.28 22 2 19.62 2 16.091V7.92C2 4.38 4.28 2 7.67 2ZM11.43 14.99L16.18 10.24C16.52 9.9 16.52 9.35 16.18 9C15.84 8.66 15.28 8.66 14.94 9L10.81 13.13L9.06 11.38C8.72 11.04 8.16 11.04 7.82 11.38C7.48 11.72 7.48 12.27 7.82 12.62L10.2 14.99C10.37 15.16 10.59 15.24 10.81 15.24C11.04 15.24 11.26 15.16 11.43 14.99Z" fill="currentColor"></path>                            </svg>                        
+          <a href="" class="nav-link ms-1">
+              <span class="fw-bold">Success</span><br>
+             {{-- RAKTOnirina rado leonce RAKTOnirina LEONCERARAKOROIN --}}
+              {{session('notif')}} <span class="text-danger fw-bold">:) </span>
+             
+             </a>
+    
+     </div>
     </div>
   @endif
+
+  @if (session('info'))
+
+  <div id="notification" class="rounded-3 p-2 active shadow  ">
+  
+    <svg class="icon-32 text-primary" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11.9993C2 6.48027 6.48 1.99927 12 1.99927C17.53 1.99927 22 6.48027 22 11.9993C22 17.5203 17.53 21.9993 12 21.9993C6.48 21.9993 2 17.5203 2 11.9993ZM11.12 8.20927C11.12 7.73027 11.52 7.32927 12 7.32927C12.48 7.32927 12.87 7.73027 12.87 8.20927V12.6293C12.87 13.1103 12.48 13.4993 12 13.4993C11.52 13.4993 11.12 13.1103 11.12 12.6293V8.20927ZM12.01 16.6803C11.52 16.6803 11.13 16.2803 11.13 15.8003C11.13 15.3203 11.52 14.9303 12 14.9303C12.49 14.9303 12.88 15.3203 12.88 15.8003C12.88 16.2803 12.49 16.6803 12.01 16.6803Z" fill="currentColor"></path>                            </svg>                        
+        {{-- <svg class="icon-32 text-success" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.67 2H16.34C19.73 2 22 4.38 22 7.92V16.091C22 19.62 19.73 22 16.34 22H7.67C4.28 22 2 19.62 2 16.091V7.92C2 4.38 4.28 2 7.67 2ZM11.43 14.99L16.18 10.24C16.52 9.9 16.52 9.35 16.18 9C15.84 8.66 15.28 8.66 14.94 9L10.81 13.13L9.06 11.38C8.72 11.04 8.16 11.04 7.82 11.38C7.48 11.72 7.48 12.27 7.82 12.62L10.2 14.99C10.37 15.16 10.59 15.24 10.81 15.24C11.04 15.24 11.26 15.16 11.43 14.99Z" fill="currentColor"></path>                            </svg>                         --}}
+        <a href="" class="nav-link ms-1">
+            <span class="fw-bold">Info</span><br>
+           {{-- RAKTOnirina rado leonce RAKTOnirina LEONCERARAKOROIN --}}
+            {{session('info')}} <span class="text-danger fw-bold"> </span>
+           
+           </a>
+  
+   </div>
+  </div>
+@endif
 
 </div>

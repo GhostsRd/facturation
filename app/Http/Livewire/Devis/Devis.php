@@ -148,6 +148,10 @@ class Devis extends Component
                 // "id_projet" => $request->id_projet,
                 // "date_creation" => $this->date_creation,
             ]);
+            Projets::where('id',$request->id_projet)->update([
+                "id_employer" => $request->id_employer,     
+            ]);
+    
         }else{
             ModelsDevis::where('id',$request->id)->update([
             
@@ -156,6 +160,9 @@ class Devis extends Component
                 "choix_planification" => $request->choix,
                 "etat_devis" => "en cours",
                
+            ]);
+            Projets::where('id',$request->id_projet)->update([
+                "id_employer" => $request->id_employer,     
             ]);
         }
  

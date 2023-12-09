@@ -122,7 +122,7 @@ class Plannification extends Component
     public function submited($val){
         if($this->total_colonne > 30){
             if($this->id_item == ""){
-                return redirect('/planification')->with('notif',"sectionner d'abord l'item puis la date de debut !");
+                return redirect('/planification')->with('info',"sectionner d'abord l'item puis la date de debut !");
             }else{
                 $this->devis = Devis::max('created_at');
                 $this->tests = Devis::where('created_at', $this->devis)->get();
@@ -178,7 +178,7 @@ class Plannification extends Component
            
         }else{
             if($this->id_item == ""){
-                return redirect('/planification')->with('notif',"sectionner d'abord l'item puis la date de debut !");
+                return redirect('/planification')->with('info',"sectionner d'abord l'item puis la date de debut !");
             }else{
                 $this->devis = Devis::max('created_at');
                 $this->tests = Devis::where('created_at', $this->devis)->get();

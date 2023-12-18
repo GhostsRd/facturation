@@ -1,4 +1,11 @@
+.ombre:focus ,.ombre:active, .ombre:hover {
 
+  box-shadow: 0 0 8px rgba(209, 209, 209, 0.8);
+  transition: 3s;
+}
+.ombre{
+  transition: 2s;
+}
 #plani:hover,#plani:focus{
  background: #000;
 }

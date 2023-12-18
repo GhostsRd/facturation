@@ -1,9 +1,9 @@
 <div >
     <div>
-        <div class="container   ">
+        {{-- <div class="container   ">
             <h3  id="titre-prof">Chiffrage</h3>
             <p id="text-prof">Page  / section </p>   
-        </div>  
+        </div>   --}}
       
         {{-- <div class="container shadow-sm rounded-2 p-2">
             <div id="form-module1 active"  method="POST">

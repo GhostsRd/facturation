@@ -5,11 +5,11 @@
          <h3  id="titre-prof"> Facturation</h3>
          <p id="text-prof">Page  / Facture</p>   
      </div>  
-         <div class="container col-lg-2 offset-lg-9">
+         <div class="container col-lg-2 offset-lg-10">
             <a href="javascript:window.print()">
                
-               <button class="btn  btn-outline-primary rounded-3 border mb-2" style="position:sticky;">
-                  <svg class="icon-32" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M2 7.916V16.084C2 19.623 4.276 22 7.665 22H16.335C19.724 22 22 19.623 22 16.084V7.916C22 4.378 19.723 2 16.334 2H7.665C4.276 2 2 4.378 2 7.916Z" fill="currentColor"></path>                                <path d="M7.72033 12.8555L11.4683 16.6205C11.7503 16.9035 12.2493 16.9035 12.5323 16.6205L16.2803 12.8555C16.5723 12.5615 16.5713 12.0865 16.2773 11.7945C15.9833 11.5025 15.5093 11.5025 15.2163 11.7965L12.7493 14.2735V7.91846C12.7493 7.50346 12.4133 7.16846 11.9993 7.16846C11.5853 7.16846 11.2493 7.50346 11.2493 7.91846V14.2735L8.78333 11.7965C8.63633 11.6495 8.44433 11.5765 8.25133 11.5765C8.06033 11.5765 7.86833 11.6495 7.72233 11.7945C7.42933 12.0865 7.42833 12.5615 7.72033 12.8555Z" fill="currentColor"></path>                                </svg>                            
+               <button class="btn  btn-outline-warning rounded-3 border-warning mb-2  " style="position:sticky;">
+                  <svg class="icon-32 text-warning anim" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M2 7.916V16.084C2 19.623 4.276 22 7.665 22H16.335C19.724 22 22 19.623 22 16.084V7.916C22 4.378 19.723 2 16.334 2H7.665C4.276 2 2 4.378 2 7.916Z" fill="currentColor"></path>                                <path d="M7.72033 12.8555L11.4683 16.6205C11.7503 16.9035 12.2493 16.9035 12.5323 16.6205L16.2803 12.8555C16.5723 12.5615 16.5713 12.0865 16.2773 11.7945C15.9833 11.5025 15.5093 11.5025 15.2163 11.7965L12.7493 14.2735V7.91846C12.7493 7.50346 12.4133 7.16846 11.9993 7.16846C11.5853 7.16846 11.2493 7.50346 11.2493 7.91846V14.2735L8.78333 11.7965C8.63633 11.6495 8.44433 11.5765 8.25133 11.5765C8.06033 11.5765 7.86833 11.6495 7.72233 11.7945C7.42933 12.0865 7.42833 12.5615 7.72033 12.8555Z" fill="currentColor"></path>                                </svg>                            
                   Télècharger</button>
             </a> 
          </div>
@@ -24,7 +24,7 @@
                </div>
                
             </div>
-            <div class="row  rounded-3  p-2 offset-lg-1 offset-1 col-10 col-lg-10 " style="background: rgba(209, 216, 216, 0.371);font-size:0.8rem">
+            <div class="row  rounded-3  p-2 offset-lg-1 offset-1 col-10 col-lg-10 " style="background:rgba(209, 221, 225, 0.097);font-size:0.8rem">
                <div class="col-lg-5 col-md-5 text-capitalize   ">
                   @foreach ($alls as $devis )
                   <label  >N° Devis :</label> <span class="text-primary fw-bold" style="font-size: 1.1rem"> {{$devis->id}}</span><br>
@@ -34,7 +34,7 @@
                         @if ($projet->id == $devis->id_projet)
                            @foreach ($chefs as $chef)
                            @if ($chef->id == $projet->id_employer)
-                          <span class="text-primary"> {{$chef->nom}} {{$chef->prenom}}</span>
+                          <span class="text-primary fw-bold"> {{$chef->nom}} {{$chef->prenom}}</span>
                            @endif
                            @endforeach
                         @endif
@@ -44,7 +44,7 @@
                   <label class="mt-2">Client  :</label> 
                   @foreach ($clients as $client )
                      @if($client->id == $devis->id_client)
-                      <span class="text-primary">  {{$client->nom}} {{$client->prenom}}</span>
+                      <span class="text-primary fw-bold">  {{$client->nom}} {{$client->prenom}}</span>
                      @endif
                   @endforeach   
                   <br>
@@ -73,7 +73,9 @@
                   
                    
                   <label class="" >Date de création :</label> 
-                  <span class="fw-bold text-primary">{{$devis->created_at}}</span>
+                  <span class="fw-bold text-primary">{{
+                    $ee = strftime(" %d %b %Y",$devis->created_at->getTimestamp());
+                  }}</span>
                   <br>
                   <label class="text-capitalize mt-2" >Contexte : </label>
                    <span class="fw-bold text-primary text-capitalize">{{$projet->contexte}}</span> <br>
@@ -280,7 +282,7 @@
                <br>
                <div class="" style="font-size:0.7rem">
             
-                  <div class="col-lg-4 p-2 me-2 border rounded-3 mb-2">
+                  <div class="col-lg-4 p-2 me-2 border border-warning rounded-3 mb-2">
                      @foreach ($planns as $plan)
                      <b>Déscription</b> {{$plan->description}} <br>
                      <b>Date debut : </b>{{ $plan->date_debut}} <br>
@@ -291,8 +293,8 @@
                      @endforeach
                  </div>
 
-             @if ($total_colonne > 30)
-            <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table te0xt-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
+                @if ($total_colonne > 30)
+                <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table te0xt-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
                                 
     
                 @foreach ( $sections as $sec )  
@@ -306,7 +308,7 @@
                 @if ($it->id_items == $item->id)
              
                     <tr>          
-                        <th rowspan="" class="border w-100 fw-bold" style="background:rgba(91, 125, 137, 0.293)">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
+                        <th rowspan="" class="border w-100 fw-bold" style="background:rgba(209, 221, 225, 0.097); font-size:0.6rem">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
             
                 
                             @if ($it->date_debut > 0)
@@ -343,7 +345,7 @@
                         
                         <td class="border-0 bg-white"></td>
                     
-                        @for ($i = 1;$i<($total_colonne/2)+1;$i++)
+                        @for ($i = 1;$i<($total_colonne/3)+1;$i++)
                             <td title="{{$i}}e semaine"  id="debut" class=" bg-white border-top-0 border " style="box-shadow:0 0 1px black;padding:5px;font-size:0.7rem">Semaine {{$i}}</td>
                         @endfor
                         {{-- @for ($i = 1;$i<$total_colonne+1;$i++)
@@ -355,8 +357,8 @@
                     
         
             </table>
-        @else
-                <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table te0xt-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
+         @else
+                <table style="background: white;cursor: pointer;overflow:scrool" id="user-list-table" class="table text-sm  text-capitalize border rounded-1  display table-responsive "  data-bs-toggle="data-table">
                                     
         
                     @foreach ( $sections as $sec )  
@@ -370,7 +372,7 @@
                     @if ($it->id_items == $item->id)
                    
                         <tr>          
-                            <th rowspan="" class="border fw-bold w-100" style="background:rgba(91, 125, 137, 0.293);">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
+                            <th rowspan="" class="border fw-bold w-100" style="background:rgba(91, 125, 137, 0.293); font-size:0.6rem">{{$item->designation}} : {{$it->date_debut + 1}} au {{$it->date_debut + $it->duree }} jours </th>
                 
                     
                                 @if ($it->date_debut > 0)

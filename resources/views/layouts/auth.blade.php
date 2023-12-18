@@ -28,11 +28,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-none ">
             <div class="container">
               {{-- <img id="logo" src="images/ee.png" alt=""> --}}
                 {{-- <a class="navbar-brand" href="{{ url('/') }}" style="color:#012970;font-family:Geneva;"> --}}
-                  <a class="fw-bold   navbar-brand" href="{{ url('/') }}" style="font-family: Open Sans;font-size:1.3rem;">  
+                  <a class="fw-bold   navbar-brand" href="{{ url('/') }}" style="font-family: Open Sans;font-size:1.3rem;color:#407BFF)">  
                   <i>
                     {{_('Contractus')}}
                   </i>

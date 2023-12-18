@@ -32,10 +32,10 @@
 </head>
 <body style="background: rgba(182, 190, 245, 0.096)">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-secondary  text-white  shadow-sm p-1 " style="background: rgba(255, 255, 255, 0.898);">
+        <nav class="navbar navbar-expand-md navbar-secondary  text-white  shadow-none p-1 " style="background: rgba(255, 255, 255, 0.898);">
             <div class="container">
 
-                <a  class="fw-bold text-dark navbar-brand" href="{{ url('/home') }}" style="font-family: Open Sans;font-size:1.3rem;"> 
+                <a  class="fw-bold  navbar-brand" href="{{ url('/home') }}" style="font-family: Open Sans;font-size:1.3rem;color:rgba(14, 69, 30, 0.735)"> 
                  <i>
                     
                   {{_("Contractus")}}

@@ -29,7 +29,7 @@
                 <table class="  table  card-body  rounded-3 shadow-sm border-0 text-capitalize text-center   " style="border:0;overflow:hidden" >
             <div class="row  p-2">
                 <div class="col-lg-2">
-                    <h5 id="titre-prof" class="m-1 fw-bold">Liste Employer</h5>
+                    <h5 id="titre-prof" class="m-1 fw-bold">Liste d'employer</h5>
                 </div>
                 <div class="col-lg-4 offset-lg-5">
                     <input type="text" wire:model.debounce.500="recherche"  class="form-control-plaintext p-1 ps-2 w-100  hover mt-1 rounded-5 shadow-sm" placeholder="Recherche  ...">

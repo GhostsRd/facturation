@@ -9,7 +9,7 @@
             <table class="card-body  table table-striped-white table-sm border-0 shadow-sm rounded-3  text-capitalize "  >
                <div class="row p-2">
                 <div class="col-lg-2">
-                    <h5 id="titre-prof" class="m-2 fw-bold">Table d'item</h5>
+                    <h5 id="titre-prof" class="m-2 fw-bold">Liste d'item</h5>
                 </div>
                 <div class="col-lg-4 offset-lg-5">
                     <input type="text" name="" id="" wire:model.debounce.5000="recherche"  class="form-control-plaintext p-1 ps-2 w-100  hover mt-1 rounded-5 shadow-sm" placeholder="Recherche par designation ">

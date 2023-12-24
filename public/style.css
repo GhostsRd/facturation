@@ -21,8 +21,14 @@
 
   }
 }
+#printing{
+  display: none;
+}
 @media print{
 
+#printing{
+  display: block;
+}
 nav,.hide {
   opacity : 0;
   top: 100%;
